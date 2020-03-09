@@ -11,7 +11,7 @@
 
 L'organisation [SocialGouv de Github](https://github.com/orgs/SocialGouv/) est notre referentiel. Elle rescence l'ensemble des personnes travaillant sur les applications et l'infrastructure. Elle est divisée en plusieurs groupes, ceux relatifs aux applications ou produits et ceux concernant les outils internes ou la gestion des environnements.
 
-Il y a donc deux rôles distincts, les membres des equipes produits ou *startups* et les administrateurs ou *core team*.
+Il y a donc deux rôles distincts, les membres des equipes produits ou *startups* et les administrateurs.
 
 ### Les membres des startups
 
@@ -19,7 +19,7 @@ Les membres d'une startup ont différents profils: `développeurs`, `UX/UI`, `pr
 
 ### Les administrateurs
 
-
+Les administrateurs sont soit membres de la [Core Team](https://github.com/orgs/SocialGouv/teams/core-team/members) soit membre de l'équipe [Ops](https://github.com/orgs/SocialGouv/teams/ops/members). Pour des raisons opérationnelles les administrateurs ont les pleins privilèges sur l'ensemble de l'infrastructure et de ses ressources.
 
 ## Les données
 
@@ -100,32 +100,50 @@ Par ailleurs, tous les composants nécessaires au fonctionnement d'une applicati
 
 ## Les services
 
-- En fonction du type de données qui transite, t'as pas le droit aux memes services.
-- Tu dois etre sur que ton service est sécure (garantis?).
+Le recours au services tiers peut etre problématique en terme de fuite de données, qu'elles soient `techniques` ou `à caractère personnel`.
+L'utilisation de solutions de stockage, de messagerie ou encore de statistiques peut entrainer la divulgation de données sensibles et mettre à mal la sécurité de nos données comme de nos environnements.
+
+Il faut considérer avec le soin le choix des services auxquels fait appel une application, ainsi qu'aux données qui sont amenées à transiter par ces services.
+
+Par précaussion, l'usage des services internes, ou *on premise*, est donc préféré à l'usage des services externes, ou *SaaS*.
+
+Différents services internes homologués sont d'ores et déjà à la disposition des applications. Ci-dessous la liste exhaustive des services existants:
+
+| Services | Azure | SaaS |
+| -------- | :------: | :------: |
+| Github   |  | X |
+| Gitlab   | X |  |
+| Matomo   | X |  |
+| Sentry   | X |  |
+| Zammad   | X |  |
+| Tipimail |  | X |
+| Postgres | X |  |
+| Let's Encrypt |  | X |
+
 
 ## L'infrastructure
 
-L'infrastructure permettant de déployer les applications est composée de deux cluster: **STAGING** et **PRODUCTION**.
+L'infrastructure permettant de déployer les applications est composée de deux clusters: **STAGING** et **PRODUCTION**.
 
 - **STAGING** héberge les versions de test des applications ou *feature branches*.
 - **PRODUCTION** sert exclusivement à l'hébergement des versions de production des applications.
 
 Seuls les administrateurs de l'infrastructure ont un accès direct aux clusters ainsi qu'aux autres ressources mises à disposition par la plateforme (systèmes de fichiers, proxies, CI/CD, bases de données...).
 
-Pour les développeurs et les product owners, un accès aux ressources de l'environnement de staging est possible par l'intermédiaires de clients web tels que: `Rancher` pour les pods du cluster, `Gitlab` pour le CI/CD  ou encore `Hasura Console` pour les bases de données Postgres.
+Pour les développeurs et les product owners, un accès aux ressources de l'environnement de staging est possible par l'intermédiaire de clients web tels que: `Rancher` pour les pods du cluster, `Gitlab` pour le CI/CD  ou encore `Hasura Console` pour les bases de données Postgres.
 
 #### Accès à l'infrastructure de STAGING
 
 |  | Cluster | BDD | Stockage | Reverse proxy | CI/CD |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| **Développeur** | HTTPS | HTTPS | *aucun accès* | *aucun accès* | HTTPS (interne) |
+| **Startup** | HTTPS | HTTPS | *aucun accès* | *aucun accès* | HTTPS (interne) |
 | **Administrateur** | HTTPS<br/>TCP/IP | HTTPS<br/>TCP/IP | HTTPS<br/>TCP/IP | HTTPS<br/>TCP/IP | HTTPS<br/>TCP/IP |
 
 #### Accès à l'infrastructure de PRODUCTION
 
 |  | Cluster | BDD | Stockage | Reverse proxy | CI/CD |
 | -------- | -------- | -------- | -------- | -------- | -------- |
-| **Développeur** | *aucun accès* | *aucun accès* | *aucun accès* | *aucun accès* | HTTPS (interne) |
+| **Startup** | *aucun accès* | *aucun accès* | *aucun accès* | *aucun accès* | HTTPS (interne) |
 | **Administrateur** | HTTPS<br/>TCP/IP | HTTPS<br/>TCP/IP | HTTPS<br/>TCP/IP | HTTPS<br/>TCP/IP | HTTPS<br/>TCP/IP |
 
 Il est à noté que le cluster de production est certifié [HDS](https://esante.gouv.fr/labels-certifications/hds/certification-des-hebergeurs-de-donnees-de-sante) et peut donc héberger des applications traitants des données de santé.
