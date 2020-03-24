@@ -96,21 +96,37 @@ En fonction du type de données, les regles à observer diffèrent.
 
 Par ailleurs, tous les composants nécessaires au fonctionnement d'une application sont soumis aux règles de sécurité relatives aux données. Il faut considérer la sécurité d'une application dans son ensemble, en prenant en compte les services auxquels elle est connectée ainsi que les environnements dans lesquels elle est déployée.
 
-## 3. Les applications (à faire...)
+## 3. Les applications
 
-- DAT & Matrice des flux
-- La gestion des comptes utilisateurs et administrateurs
-    - la gestion de passwords
-    - La revue régulière des comptes et privilèges
-- Analyse de risques & homologation
+Toute application produite au sein de la Fabrique Numérique se doit d'observer les points de sécurités essentiels assurant un niveau de protection satisfaisant, ainsi qu'une capacité d'analyse et d'intervention suffisant en cas d'attaque.
 
-[PSSIE](https://www.ssi.gouv.fr/uploads/2014/11/pssie_anssi.pdf):
+Pour se faire, l'équipe produit doit rédiger un Dossier d'Architecture Technique (DAT) contenant au moins les éléments suivants:
+
+- La liste des acteurs du projet
+- La liste des serveurs et des composants applicatifs
+- La matrice des flux applicatifs et systèmes
+- Les URLs et les certificats
+- La politique de sauvegardes
+- Les volumetries de fichiers et de base de données
+- Les usages des services tiers
+
+En plus du DAT, l'équipe produit se doit d'établir et d'observer une politique de gestion des comptes de l'application, pour tous les utilisateurs. Cette politique doit prendre en compte:
+
+- Les niveaux de privilèges des utilisateurs, qui doivent absolument être corrélés aux usages réels de l'application
+- La gestion des mots de passe: complexité, rafraichissement, multi-facteurs...
+- Les revues régulières et ponctuelles des attributions des comptes et de leurs privilèges
+
+La politique de gestion des comptes tout comme le DAT sont essentiels pour l'homologation finale de l'application. L'homologation est une étape de validation obligatoire en terme de sécurité. C'est une des conditions préalable nécessaire à la mise en production de l'application.
+
+La notion d'homologation d'une application est définie par l'ANSSI dans sa [PSSIE](https://www.ssi.gouv.fr/uploads/2014/11/pssie_anssi.pdf):
 
 > Tout système d’information doit faire l’objet d’une décision d’homologation de sa sécurité avant sa mise en exploitation dans les conditions d’emploi définies. L’homologation est l’acte selon lequel l’autorité atteste formellement auprès des utilisateurs que le système d’information est protégé conformément aux objectifs de sécurité fixés. La décision d’homologation est prise par l’autorité d’homologation (désignée par l’autorité qualifiée), le cas échéant après avis de la commission d’homologation. Cette décision s’appuie sur une analyse de risques adaptée aux enjeux du système considéré, et précise les conditions d’emploi.
 
-- Le respect du RGPD  
-[Analyse d'impact de la protection des données de la CNIL](https://www.cnil.fr/sites/default/files/atoms/files/infographie_aipd.pdf)  
-[Liste des traitements pour lesquels une AIPD est requise](https://www.cnil.fr/sites/default/files/atoms/files/liste-traitements-aipd-requise.pdf)
+Concernant les données personnelles liées à l'application, le respect du *Règlement Général sur la Protection des Données (RGPD)* est de rigueur. Dans le cas où une application nécessite une mise en conformité au RGPD, l'équipe produit doit lister les traitements succeptibles de requerir une analyse d'impact de la protection des données (AIPD), puis effectuer l'AIPD le cas échéant. S'en suivra éventuellement une serie de mesures impliquant les evolutions et les correctifs qui auront été jugés adéquats et qui devront être apportés à l'application.
+
+La CNIL met à disposition sur sont site toute la documentation et les outils necessaires à la mise en conformité au RGDP, comme par exemple:
+- [L'analyse d'impact de la protection des données de la CNIL](https://www.cnil.fr/sites/default/files/atoms/files/infographie_aipd.pdf)  
+- [La liste des traitements pour lesquels une AIPD est requise](https://www.cnil.fr/sites/default/files/atoms/files/liste-traitements-aipd-requise.pdf)
 
 ## 4. Les services
 
