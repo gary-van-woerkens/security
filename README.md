@@ -135,7 +135,7 @@ L'utilisation de solutions de stockage, de messagerie ou encore de statistiques 
 
 Il faut considérer avec le soin le choix des services auxquels fait appel une application, ainsi que le choix données qui sont amenées à transiter par ces services.
 
-Par précaussion, l'usage des services internes, ou *on premise*, est donc préféré à l'usage des services externes, ou *SaaS*. Différents services internes homologués sont d'ores et déjà à la disposition des applications.
+Par précaution, l'usage des services internes, ou *on premise*, est donc préféré à l'usage des services externes, ou *SaaS*. Différents services internes homologués sont d'ores et déjà à la disposition des applications.
 
 Ci-dessous la liste exhaustive des services existants:
 
